@@ -43,10 +43,10 @@ const sample = [
 ];
 
 test('calculate matches per year', () => {
-  expect(matchesWonPerTeamPerYear(sample)).toMatchObject([
-    { season: '2001', 'win per team': { goa: 2 } },
-    { season: '2002', 'win per team': { pune: 1, goa: 1, patna: 1 } },
-    { season: '2003', 'win per team': { patna: 1, goa: 1 } },
-    { season: '2004', 'win per team': { patna: 1, goa: 1, pune: 1 } },
-  ]);
+  expect(matchesWonPerTeamPerYear(sample)).toMatchObject({
+    2001: { goa: 2 },
+    2002: { pune: 1, goa: 1, patna: 1 },
+    2003: { patna: 1, goa: 1 },
+    2004: { patna: 1, goa: 1, pune: 1 },
+  });
 });
