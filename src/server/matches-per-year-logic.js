@@ -1,6 +1,6 @@
-let matchesPerYear = function (matchData) {
+let matchesPerYear = function (matches) {
   let outputObject = {};
-  for (let match of matchData) {
+  for (let match of matches) {
     outputObject[match.season] = (outputObject[match.season] || 0) + 1;
   }
   return outputObject;
