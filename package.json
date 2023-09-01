@@ -10,7 +10,11 @@
   "author": "",
   "license": "ISC",
   "eslintConfig": {
-    "extends": "eslint:recommended"
+    "extends": "eslint:recommended",
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
@@ -24,7 +28,7 @@
     "prettier": "^3.0.3"
   },
   "lint-staged": {
-    "**/*.{js,jsx,json}": [
+    "**/*.{js,jsx}": [
       "eslint --fix .",
       "prettier --write ."
     ]
