@@ -1,29 +1,12 @@
-let matchesWonPerTeamPerYear = function (Matchdata) {
-  let matchesWonPerTeamPerYearArr = [];
-  for (let index = 0; index < Matchdata.length; index++) {
-    let perSeasonObj = {};
-    perSeasonObj.season = Matchdata[index].season;
-    if (
-      undefined ===
-      matchesWonPerTeamPerYearArr.find(
-        (obj) => obj.season === perSeasonObj.season,
-      )
-    ) {
-      matchesWonPerTeamPerYearArr.push(perSeasonObj);
-    }
+let matchesWonPerTeamPerYear = function (matches) {
+  const matchesWonPerTeamPerYearObj = {};
+  for (let match of matches) {
+    matchesWonPerTeamPerYearObj[match.season] =
+      matchesWonPerTeamPerYearObj[match.season] || {};
+    matchesWonPerTeamPerYearObj[match.season][match.winner] =
+      (matchesWonPerTeamPerYearObj[match.season][match.winner] || 0) + 1;
   }
-  for (let index = 0; index < matchesWonPerTeamPerYearArr.length; index++) {
-    let perTeamWin = {};
-    for (let match of Matchdata) {
-      if (match.season === matchesWonPerTeamPerYearArr[index].season) {
-        perTeamWin[match.winner] = (perTeamWin[match.winner] || 0) + 1;
-      }
-    }
-    matchesWonPerTeamPerYearArr[index]['win per team'] = perTeamWin;
-  }
-
-  // console.log(matchesWonPerTeamPerYearArr);
-  return matchesWonPerTeamPerYearArr;
+  return matchesWonPerTeamPerYearObj;
 };
 
 module.exports = matchesWonPerTeamPerYear;
