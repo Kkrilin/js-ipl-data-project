@@ -1,15 +1,12 @@
 const topTenEconomicalBowler = function (matches, deliveries) {
-  const filterMatches = matches.filter((match) => match.season === '2015');
-  const firstMatchId = filterMatches[0].id;
-  const lastMatchId = filterMatches[filterMatches.length - 1].id;
-  // console.log(firstMatchId, lastMatchId);
+  const seasonIdObj = matches.reduce((result, match) => {
+    result[match.id] = match.season;
+    return result;
+  }, {});
   let runConced = {};
   let ballBowled = {};
   for (let delivery of deliveries) {
-    if (
-      delivery['match_id'] >= firstMatchId &&
-      delivery['match_id'] <= lastMatchId
-    ) {
+    if (seasonIdObj[delivery['match_id']] === '2015') {
       runConced[delivery.bowler] =
         (runConced[delivery.bowler] || 0) + Number(delivery['total_runs']);
       if (delivery['noball_runs'] === '0' || delivery['wide_runs'] === '0') {
@@ -29,7 +26,13 @@ const topTenEconomicalBowler = function (matches, deliveries) {
   // console.log(ballBowled);
   return Object.entries(runConced)
     .sort((a, b) => a[1] - b[1])
-    .slice(0, 10);
+    .slice(0, 10)
+    .map((El) => {
+      let obj = {};
+      obj['bowler'] = El[0];
+      obj['economy'] = El[1];
+      return obj;
+    });
 };
 
 module.exports = topTenEconomicalBowler;

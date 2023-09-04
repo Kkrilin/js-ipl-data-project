@@ -15,27 +15,30 @@ const bestEconomySuperOver = function (_, deliveries) {
     }
 
     let runs = superOverEconomy[delivery['bowler']]['con_runs'];
-    let ball = superOverEconomy[delivery['bowler']]['ball'];
-    superOverEconomy[delivery['bowler']]['economy'] = (runs / ball) * 6;
+    let balls = superOverEconomy[delivery['bowler']]['ball'];
+    superOverEconomy[delivery['bowler']]['economy'] = (runs / balls) * 6;
   }
 
   for (let key in superOverEconomy) {
     superOverEconomy[key] = superOverEconomy[key]['economy'];
   }
+  // return superOverEconomy;
   return minKeyValuePair(superOverEconomy);
 };
 
 function minKeyValuePair(obj) {
   let min = Infinity;
-  let prop = '';
   let outputObj = {};
   for (let key in obj) {
     if (min > obj[key]) {
       min = obj[key];
-      prop = key;
     }
   }
-  outputObj[prop] = min;
+  for (let key in obj) {
+    if (obj[key] === min) {
+      outputObj[key] = min;
+    }
+  }
   return outputObj;
 }
 

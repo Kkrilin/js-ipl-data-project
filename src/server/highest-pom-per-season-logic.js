@@ -13,14 +13,18 @@ const highestPomPerSeason = function (matches) {
 
 function maxValueKey(obj) {
   let max = -Infinity;
-  let prop = '';
+  let pomObj = {};
   for (let key in obj) {
     if (max < obj[key]) {
       max = obj[key];
-      prop = key;
     }
   }
-  return prop;
+  for (let key in obj) {
+    if (obj[key] === max) {
+      pomObj[key] = max;
+    }
+  }
+  return pomObj;
 }
 
 module.exports = highestPomPerSeason;

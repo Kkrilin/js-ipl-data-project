@@ -1,14 +1,11 @@
 const extraRunsPerTeam = function (matches, deliveries) {
-  const filterMatches = matches.filter((match) => match.season === '2016');
-  const firstMatchId = filterMatches[0].id;
-  const lastMatchId = filterMatches[filterMatches.length - 1].id;
-  console.log(firstMatchId, lastMatchId);
+  const seasonIdObj = matches.reduce((result, match) => {
+    result[match.id] = match.season;
+    return result;
+  }, {});
   const output = {};
   for (let delivery of deliveries) {
-    if (
-      delivery['match_id'] >= firstMatchId &&
-      delivery['match_id'] <= lastMatchId
-    ) {
+    if (seasonIdObj[delivery['match_id']] === '2016') {
       output[delivery['bowling_team']] =
         (output[delivery['bowling_team']] || 0) +
         Number(delivery['extra_runs']);
