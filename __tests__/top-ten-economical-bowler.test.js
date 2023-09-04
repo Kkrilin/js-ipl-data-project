@@ -38,16 +38,16 @@ const sampleDeliveries = [
 test('top ten economical bowler in 2015', () => {
   expect(topTenEconomicalBowler(sampleMatches, sampleDeliveries)).toMatchObject(
     [
-      ['thakur', 6],
-      ['ishant', 10],
-      ['umesh', 12],
-      ['ishan', 12],
-      ['kumar', 16],
-      ['suresh', 18],
-      ['shami', 18],
-      ['nehra', 24],
-      ['starc', 24],
-      ['ashwin', 24],
+      { bowler: 'thakur', economy: 6 },
+      { bowler: 'ishant', economy: 10 },
+      { bowler: 'umesh', economy: 12 },
+      { bowler: 'ishan', economy: 12 },
+      { bowler: 'kumar', economy: 16 },
+      { bowler: 'suresh', economy: 18 },
+      { bowler: 'shami', economy: 18 },
+      { bowler: 'nehra', economy: 24 },
+      { bowler: 'starc', economy: 24 },
+      { bowler: 'ashwin', economy: 24 },
     ],
   );
 });

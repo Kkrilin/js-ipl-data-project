@@ -15,16 +15,16 @@ const sampleDeliveries = [
   { player_dismissed: 'kumar', bowler: 'dhoni' },
   { player_dismissed: 'umesh', bowler: 'virat' },
   { player_dismissed: 'ishant', bowler: 'rohit' },
-  { player_dismissed: 'nehra', bowler: 'virat' },
+  { player_dismissed: 'umesh', bowler: 'virat' },
   { player_dismissed: 'starc', bowler: 'jadeja' },
-  { player_dismissed: 'suresh', bowler: 'dhoni' },
+  { player_dismissed: 'kumar', bowler: 'dhoni' },
   { player_dismissed: 'ashwin', bowler: 'virat' },
   { player_dismissed: 'jadeja', bowler: 'dhoni' },
   { player_dismissed: 'thakur', bowler: 'virat' },
   { player_dismissed: 'ishan', bowler: 'jadeja' },
   { player_dismissed: 'kumar', bowler: 'rohit' },
   { player_dismissed: 'shami', bowler: 'jadeja' },
-  { player_dismissed: 'umesh', bowler: 'rohit' },
+  { player_dismissed: 'umesh', bowler: 'virat' },
   { player_dismissed: 'ishant', bowler: 'virat' },
   { player_dismissed: 'umesh', bowler: 'dhoni' },
   { player_dismissed: 'kumar', bowler: 'dhoni' },
@@ -36,5 +36,5 @@ const sampleDeliveries = [
 test('highest nmber player dismissed another player', () => {
   expect(
     playerDismissedAnotherPlayer(sampleMatches, sampleDeliveries),
-  ).toMatchObject({ 'kumar-dhoni': 2 });
+  ).toMatchObject({ 'kumar-dhoni': 3, 'umesh-virat': 3 });
 });

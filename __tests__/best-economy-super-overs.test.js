@@ -145,10 +145,18 @@ const sampleDeliveries = [
     total_runs: '1',
     wide_runs: '0',
   },
+  {
+    match_id: 8,
+    is_super_over: '1',
+    bowler: 'dinda',
+    total_runs: '1',
+    wide_runs: '0',
+  },
 ];
 
 test('bowler with best economy in super overs', () => {
   expect(bestEconomySuperOver(dummyArguments, sampleDeliveries)).toMatchObject({
     thakur: 6,
+    dinda: 6,
   });
 });
