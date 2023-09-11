@@ -1,4 +1,4 @@
-const topTenEconomicalBowler = function (matches, deliveries) {
+const topTenEconomicalBowler = function (matches, deliveries, minBowled) {
   const seasonIdObj = matches.reduce((result, match) => {
     result[match.id] = match.season;
     return result;
@@ -15,12 +15,12 @@ const topTenEconomicalBowler = function (matches, deliveries) {
     }
   }
   for (let bowler in runConced) {
-    //   // if (ballBowled[bowler] < 30) {
-    //   //   delete ballBowled[bowler];
-    //   //   delete runConced[bowler];
-    //   // } else {
-    runConced[bowler] = (runConced[bowler] / ballBowled[bowler]) * 6;
-    //   // }
+    if (ballBowled[bowler] > minBowled) {
+      delete ballBowled[bowler];
+      delete runConced[bowler];
+    } else {
+      runConced[bowler] = (runConced[bowler] / ballBowled[bowler]) * 6;
+    }
   }
   // console.log(runConced);
   // console.log(ballBowled);
