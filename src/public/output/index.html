@@ -8,7 +8,9 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
   </head>
   <body>
-    <h1 id="ipl-project">IPL Project</h1>
+    <h1 id="ipl-project">
+      IPL Data Visualization using Highcharts (2008 - 2017)
+    </h1>
     <div>
       <ul>
         <li id="extra-runs">Extra Runs Per Team (2016)</li>
@@ -21,7 +23,7 @@
         <li id="super-over">best economy in super overs</li>
         <li id="pom">highest player of the match per season</li>
         <li id="wonPerTeamperYear">matches Won Per Team Per Year</li>
-        <label for="year">Choose a year:</label>
+        <label for="year">Select Year :</label>
         <select name="cars" id="year">
           <option value="years">years</option>
           <option value="2008">2008</option>
@@ -36,7 +38,7 @@
           <option value="2017">2017</option>
         </select>
         <li id="strikerate">batsman Strike Rate Per Season</li>
-        <label for="strike">Choose a year:</label>
+        <label for="strike">Select Year :</label>
         <select name="cars" id="strike">
           <option value="years">years</option>
           <option value="2008">2008</option>
@@ -345,21 +347,16 @@
         Highcharts.chart('chart-1', {
           chart: {
             type: 'column',
+            scrollablePlotArea: {
+              minWidth: 8000,
+              // scrollpositionX:0
+            },
           },
           title: {
             text: `batsman strike in the ${year}`,
             color: '#123546',
           },
-          scrollbar: {
-            barBorderRadius: 0,
-            barBorderWidth: 1,
-            buttonsEnabled: true,
-            height: 14,
-            margin: 0,
-            rifleColor: '#333',
-            trackBackgroundColor: '#f2f2f2',
-            trackBorderRadius: 0,
-          },
+
           xAxis: {
             categories: Object.keys(data[year]),
             title: {

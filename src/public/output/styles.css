@@ -1,12 +1,30 @@
 h1 {
   text-align: center;
-  color: red;
+  color: #102e5f;
+  font-size: 40px;
+  font-family: sans-serif;
 }
 li {
   cursor: pointer;
   margin-top: 10px;
   width: fit-content;
+  font-size: 25px;
+  color: cornflowerblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 li:hover {
   text-decoration: underline;
+}
+
+label {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 22px;
+}
+select {
+  width: 90px;
+  height: 35px;
+  margin-left: 20px;
+  padding-left: 12px;
+  font-size: 18px;
 }
