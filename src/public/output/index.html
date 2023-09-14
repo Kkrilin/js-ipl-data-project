@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <h1 id="ipl-project">IPL Project</h1>
+    <div>
+      <ul>
+        <li id="extra-runs">Extra Runs Per Team (2016)</li>
+        <li id="matches-per-year">Matches Per Year</li>
+        <li id="economic-bowler">Top Ten Economic Bowler (2015)</li>
+        <li id="won-match">Won Toss Won Match</li>
+        <li id="dismissed">
+          highest number of player dissmissed by another player
+        </li>
+        <li id="super-over">best economy in super overs</li>
+        <li id="pom">highest player of the match per season</li>
+        <li id="wonPerTeamperYear">matches Won Per Team Per Year</li>
+        <label for="year">Choose a year:</label>
+        <select name="cars" id="year">
+          <option value="years">years</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+        </select>
+        <li id="strikerate">batsman Strike Rate Per Season</li>
+        <label for="strike">Choose a year:</label>
+        <select name="cars" id="strike">
+          <option value="years">years</option>
+          <option value="2008">2008</option>
+          <option value="2009">2009</option>
+          <option value="2010">2010</option>
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+        </select>
+      </ul>
+    </div>
+    <div id="chart-1"></div>
+  </body>
+  <script>
+    // Extra runs Per Teams
+    async function plotExtraRunsPerTeams() {
+      const response = await fetch('./extraRunsPerTeam.json');
+      const data = await response.json();
+      //   console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'Extra Runs Per Team (2016)',
+        },
+        xAxis: {
+          categories: Object.keys(data),
+        },
+        yAxis: {
+          title: {
+            text: 'Matches',
+          },
+        },
+        series: [
+          {
+            name: 'Teams',
+            data: Object.values(data),
+            color: '#213251',
+          },
+        ],
+      });
+    }
+
+    document
+      .getElementById('extra-runs')
+      .addEventListener('click', plotExtraRunsPerTeams);
+
+    // Matches per Year
+
+    async function plotMatchesPerYear() {
+      const response = await fetch('./matchesPerYear.json');
+      const data = await response.json();
+      //   console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'Matches per Year',
+        },
+        xAxis: {
+          categories: Object.keys(data),
+        },
+        yAxis: {
+          title: {
+            text: 'Matches',
+          },
+        },
+        series: [
+          {
+            name: 'Years',
+            data: Object.values(data),
+            color: '#a12145',
+          },
+        ],
+      });
+    }
+    document
+      .getElementById('matches-per-year')
+      .addEventListener('click', plotMatchesPerYear);
+    // plotMatchesPerYear();
+
+    async function plotTopTenEconomicBowler() {
+      const response = await fetch('./topTenEconomicalBowler.json');
+      const data = await response.json();
+      // console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'Top Ten Economic Bowler (2015)',
+        },
+        xAxis: {
+          categories: data.map((El) => El.bowler),
+        },
+        yAxis: {
+          title: {
+            text: 'Economy',
+          },
+        },
+        series: [
+          {
+            name: 'bowler',
+            data: data.map((El) => El.economy),
+            color: '#045145',
+          },
+        ],
+      });
+    }
+    document
+      .getElementById('economic-bowler')
+      .addEventListener('click', plotTopTenEconomicBowler);
+    // plotTopTenEconomicBowler();
+
+    async function plotWonTossWonMatch() {
+      const response = await fetch('./wonTossWonMatch.json');
+      const data = await response.json();
+      console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'won Toss Won Match',
+        },
+        xAxis: {
+          categories: Object.keys(data),
+        },
+        yAxis: {
+          title: {
+            text: 'won match',
+          },
+        },
+        series: [
+          {
+            name: 'teams',
+            data: Object.values(data),
+            color: '#125848',
+          },
+        ],
+      });
+    }
+
+    document
+      .getElementById('won-match')
+      .addEventListener('click', plotWonTossWonMatch);
+
+    async function plotDismissedPlayerAnoterPlayer() {
+      const response = await fetch('./playerDismissedAnotherPlayer.json');
+      const data = await response.json();
+      console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'highest number of player dissmissed by another player',
+        },
+        xAxis: {
+          categories: Object.keys(data),
+        },
+        yAxis: {
+          title: {
+            text: 'dismissal count',
+          },
+        },
+        plotOptions: {
+          series: {
+            pointWidth: 40,
+          },
+        },
+        series: [
+          {
+            name: 'batsman-bowler',
+            data: Object.values(data),
+            color: 'brown',
+          },
+        ],
+      });
+    }
+    document
+      .getElementById('dismissed')
+      .addEventListener('click', plotDismissedPlayerAnoterPlayer);
+
+    async function plotBestEconomySuperOvers() {
+      const response = await fetch('./bestEconomySuperOver.json');
+      const data = await response.json();
+      console.log(data);
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'column',
+        },
+        title: {
+          text: 'Best Economy in Super Overs',
+        },
+        xAxis: {
+          categories: Object.keys(data),
+        },
+        yAxis: {
+          title: {
+            text: 'economy',
+          },
+        },
+        plotOptions: {
+          series: {
+            pointWidth: 40,
+          },
+        },
+        series: [
+          {
+            name: 'bowler',
+            data: Object.values(data),
+            color: 'darkgreen',
+          },
+        ],
+      });
+    }
+
+    document
+      .getElementById('super-over')
+      .addEventListener('click', plotBestEconomySuperOvers);
+
+    async function plotPomPerSeason() {
+      const response = await fetch('./highestPomPerSeason.json');
+      const data = await response.json();
+      // const chartData = Object.entries(data);
+      // console.log(chartData);
+      var chartData = [];
+      for (var year in data) {
+        for (var player in data[year]) {
+          chartData.push({
+            name: year + '-' + player,
+            y: data[year][player],
+            label: year,
+          });
+        }
+      }
+      // Create the Highcharts chart
+      Highcharts.chart('chart-1', {
+        chart: {
+          type: 'pie',
+        },
+        title: {
+          text: 'highest pom per season',
+        },
+        yAxis: {
+          title: {
+            text: 'Player Name',
+          },
+        },
+        series: [{ name: 'Awards', data: chartData }],
+      });
+    }
+    document.getElementById('pom').addEventListener('click', plotPomPerSeason);
+
+    async function plotMatchesWonPerTeamPerYear() {
+      const selectedIndex = this.selectedIndex;
+      const year = this.options[selectedIndex].value;
+      const response = await fetch('./matchesWonPerTeamPerYear.json');
+      const data = await response.json();
+      if (year !== 'years')
+        Highcharts.chart('chart-1', {
+          chart: {
+            type: 'column',
+          },
+          title: {
+            text: `Matces won per year per team ${year}`,
+            color: '#123546',
+          },
+          xAxis: {
+            categories: Object.keys(data[year]),
+            title: {
+              text: 'name of teams',
+            },
+          },
+          yAxis: {
+            title: {
+              text: 'number of matches',
+            },
+          },
+          series: [
+            {
+              name: 'won',
+              data: Object.values(data[year]),
+              color: '#125848',
+            },
+          ],
+        });
+    }
+    document
+      .getElementById('year')
+      .addEventListener('change', plotMatchesWonPerTeamPerYear);
+
+    async function plotStrikePerBatsmanPerYear() {
+      const selectedIndex = this.selectedIndex;
+      const year = this.options[selectedIndex].value;
+      const response = await fetch('./batsmanStrikeRateSeason.json');
+      const data = await response.json();
+      if (year !== 'years')
+        Highcharts.chart('chart-1', {
+          chart: {
+            type: 'column',
+          },
+          title: {
+            text: `batsman strike in the ${year}`,
+            color: '#123546',
+          },
+          scrollbar: {
+            barBorderRadius: 0,
+            barBorderWidth: 1,
+            buttonsEnabled: true,
+            height: 14,
+            margin: 0,
+            rifleColor: '#333',
+            trackBackgroundColor: '#f2f2f2',
+            trackBorderRadius: 0,
+          },
+          xAxis: {
+            categories: Object.keys(data[year]),
+            title: {
+              text: 'name of player',
+            },
+          },
+          yAxis: {
+            max: 250,
+            title: {
+              text: 'strikeRate',
+            },
+          },
+          series: [
+            {
+              name: 'strike',
+              data: Object.values(data[year]).map((el) => {
+                // console.log(el.strikerate);
+                return Number(el.strikrate);
+              }),
+              color: '#845126',
+            },
+          ],
+        });
+    }
+    document
+      .getElementById('strike')
+      .addEventListener('change', plotStrikePerBatsmanPerYear);
+  </script>
+</html>

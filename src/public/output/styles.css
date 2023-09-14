@@ -1,0 +1,12 @@
+h1 {
+  text-align: center;
+  color: red;
+}
+li {
+  cursor: pointer;
+  margin-top: 10px;
+  width: fit-content;
+}
+li:hover {
+  text-decoration: underline;
+}
